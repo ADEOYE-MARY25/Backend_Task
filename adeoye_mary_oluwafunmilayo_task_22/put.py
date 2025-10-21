@@ -18,14 +18,19 @@ class BasicAPI(BaseHTTPRequestHandler):
         self.wfile.write(json.dumps(payload, indent=2).encode())
 
 
-    def do_POST(self):
+    def do_PUT(self):
         content_size = int(self.headers.get("content-length", 0))
         parsed_data = self.rfile.read(content_size)
+        record_id= int(self.path.strip("/"))
+        for item in data:
+            if item["id"] ==record_id:
+                updated_data = json.loads(parsed_data)
+                item.update(updated_data)
 
 
-        post_data = json.loads(parsed_data)
+
         
-        data.append(post_data)
+        
 
 
         self.send_data({
