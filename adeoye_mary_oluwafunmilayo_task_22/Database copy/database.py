@@ -1,16 +1,16 @@
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
-from pymysql.constants import CLIENT
+# from pymysql.constants import CLIENT
 from dotenv import load_dotenv
 import os 
 
-load_dotenv
+load_dotenv()
 
 # create a connection database (the dialect is mysql, the driver is pymysql)
 # db_url = dialect+driver ://dbuser;dbpassword;dbhost;dbname . This is the format of creating a url
 
 
-db_url = f"mysql+pymysql://{os.getenv("dbuser")}:{os.getenv("dbpassword")}@{os.getenv("dbhost")}:{os.getenv("dbport")}"
+db_url = f"mysql+pymysql://{os.getenv("dbuser")}:{os.getenv("dbpassword")}@{os.getenv("dbhost")}:{os.getenv("dbport")}/{os.getenv("dbname")}"
 
 engine = create_engine(db_url)
 
